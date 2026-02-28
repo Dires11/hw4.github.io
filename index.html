@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style type="text/css">
+      /* CLIENT-SPECIFIC STYLES */
+      body,
+      table,
+      td,
+      a {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+      }
+
+      /* RESET STYLES */
+      img {
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+      }
+      table {
+        border-collapse: collapse !important;
+      }
+      body {
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+
+      /* iOS BLUE LINKS */
+      a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+      }
+
+      /* GMAIL BLUE LINKS */
+      u + #body a {
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+
+      /* SAMSUNG MAIL BLUE LINKS */
+      #MessageViewBody a {
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+
+      /* Universal styles for links and stuff */
+      .body-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #1f2937;
+      }
+      .muted {
+        color: #6b7280;
+      }
+      .link {
+        color: #008000;
+        text-decoration: underline;
+        transition: color 180ms ease-in-out;
+      }
+      .link:hover {
+        color: #0b6a0b !important;
+        text-decoration: none !important;
+      }
+
+      /* Interactivity for buttons/links (supported clients only) */
+      .btn {
+        transition: background-color 180ms ease-in-out, box-shadow 180ms ease-in-out,
+          transform 180ms ease-in-out;
+      }
+      .btn:hover {
+        background-color: #0b6a0b !important;
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      /* KEYFRAMES animation (not opacity/scale) */
+      @keyframes nudge {
+        0% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(2px);
+        }
+        
+        100% {
+          transform: translateX(0px);
+        }
+      }
+      .cta-arrow {
+        display: inline-block;
+        animation: nudge 1s ease-in-out infinite;
+      }
+
+    
+      .tabs {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .tab-input {
+        display: none;
+      }
+      .tab-label {
+        display: inline-block;
+        cursor: pointer;
+        padding: 10px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 999px;
+        margin: 0 6px 10px 0;
+        font-size: 14px;
+        line-height: 1;
+        color: #111827;
+        background: #ffffff;
+        transition: background-color 180ms ease-in-out, border-color 180ms ease-in-out,
+          transform 180ms ease-in-out;
+      }
+      .tab-label:hover {
+        transform: translateY(-1px);
+        border-color: #008000;
+      }
+      .tab-panel {
+        display: none;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 14px;
+        background: #f9fafb;
+      }
+      #tab1:checked ~ .labels .lab1,
+      #tab2:checked ~ .labels .lab2,
+      #tab3:checked ~ .labels .lab3 {
+        background: #e9f7e9;
+        border-color: #008000;
+      }
+      #tab1:checked ~ .panels .panel1 {
+        display: block;
+      }
+      #tab2:checked ~ .panels .panel2 {
+        display: block;
+      }
+      #tab3:checked ~ .panels .panel3 {
+        display: block;
+      }
+
+      /* ====== Responsive styles ====== */
+      @media screen and (max-width: 620px) {
+        .container {
+          width: 100% !important;
+        }
+        .px {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+        .hero {
+          width: 100% !important;
+          height: auto !important;
+        }
+
+        /* Text size adjustments on mobile */
+        .h1 {
+          font-size: 20px !important;
+          line-height: 1.25 !important;
+        }
+        .body-text {
+          font-size: 15px !important;
+          line-height: 1.7 !important;
+        }
+        .btn-text {
+          font-size: 16px !important;
+          line-height: 16px !important;
+        }
+
+        /* 3-column stack on mobile */
+        .stack {
+          display: block !important;
+          width: 100% !important;
+        }
+        .stack-pad {
+          padding: 10px 0 !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body id="body" style="background-color: #f3f4f6; padding: 0; margin: 0">
+    <!-- OUTER WRAPPER TABLE (full width) -->
+    <table
+      role="presentation"
+      width="100%"
+      border="0"
+      cellspacing="0"
+      cellpadding="0"
+      style="background-color: #f3f4f6"
+    >
+      <tr>
+        <td align="center" style="padding: 24px 12px">
+          <table
+            role="presentation"
+            width="600"
+            border="0"
+            cellspacing="0"
+            cellpadding="0"
+            class="container"
+            style="
+              width: 600px;
+              max-width: 600px;
+              background-color: #ffffff;
+              border: 2px solid #008000;
+            "
+          >
+            <!-- LOGO -->
+            <tr>
+              <td align="center" style="padding: 18px 16px 10px">
+                <img
+                  src="./images/logo-hw3.png"
+                  width="100"
+                  height="100"
+                  alt="Ucom logo"
+                  style="border-radius: 50%; border: 2px solid #008000"
+                />
+              </td>
+            </tr>
+
+            <!-- HEADLINE BAR -->
+            <tr>
+              <td align="center" style="background-color: #008000; padding: 12px 16px">
+                <h1
+                  class="h1"
+                  style="
+                    margin: 0;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 22px;
+                    line-height: 1.3;
+                    color: #ffffff;
+                    font-weight: 700;
+                  "
+                >
+                  Ucom Presents: Faster Home Internet + Special Pricing
+                </h1>
+              </td>
+            </tr>
+
+            <!-- HERO IMAGE (RESPONSIVE) -->
+            <tr>
+              <td>
+                <img
+                  src="./images/hero-hw3.png"
+                  alt="Green banner reading: Faster Home Internet — Limited-time pricing, easy install, reliable support"
+                  class="hero"
+                  style="width: 100%; height: auto"
+                />
+              </td>
+            </tr>
+
+            <!-- TEXT AREA WITH BACKGROUND IMAGE -->
+            <tr>
+              <td class="px" style="padding: 18px 22px">
+                <div
+                  style="
+                    background-image: url('./images/text-bg.png');
+                    background-size: cover;
+                    background-position: center;
+                    border-radius: 10px;
+                    padding: 16px;
+                  "
+                >
+                  <p class="body-text" style="margin: 0 0 12px">Hi there,</p>
+
+                  <p class="body-text" style="margin: 0 0 12px">
+                    Looking for a more reliable connection for streaming, studying, gaming, and video
+                    calls? For a limited time, upgrade to
+                    <strong style="color: #008000">faster speeds</strong> with
+                    <strong style="color: #008000">easy setup</strong> and
+                    <strong style="color: #008000">transparent pricing</strong>.
+                  </p>
+
+                  <p class="body-text" style="margin: 0">
+                    What you get:
+                    <br />• Faster plans available in more areas <br />• Quick install and support
+                    from our team <br />• Optional bundle savings for mobile + home services
+                  </p>
+                </div>
+              </td>
+            </tr>
+
+            <!-- ===== THREE-COLUMN COMPONENT (NEW CONTENT) ===== -->
+            <tr>
+              <td class="px" style="padding: 0 22px 18px">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <!-- Column 1 -->
+                    <td
+                      class="stack stack-pad"
+                      width="33.33%"
+                      valign="top"
+                      style="padding: 0 8px 0 0"
+                    >
+                      <div
+                        style="
+                          border: 1px solid #e5e7eb;
+                          border-radius: 12px;
+                          padding: 14px;
+                          background: #ffffff;
+                        "
+                      >
+                        <p
+                          style="
+                            margin: 0 0 6px;
+                            font-family: Arial, Helvetica, sans-serif;
+                            font-size: 16px;
+                            line-height: 1.3;
+                            font-weight: 700;
+                            color: #111827;
+                          "
+                        >
+                          Speed for every room
+                        </p>
+                        <p class="body-text" style="margin: 0">
+                          Great for 4K streaming, online classes, and video calls—without the
+                          buffering stress.
+                        </p>
+                      </div>
+                    </td>
+
+                    <!-- Column 2 -->
+                    <td
+                      class="stack stack-pad"
+                      width="33.33%"
+                      valign="top"
+                      style="padding: 0 4px"
+                    >
+                      <div
+                        style="
+                          border: 1px solid #e5e7eb;
+                          border-radius: 12px;
+                          padding: 14px;
+                          background: #ffffff;
+                        "
+                      >
+                        <p
+                          style="
+                            margin: 0 0 6px;
+                            font-family: Arial, Helvetica, sans-serif;
+                            font-size: 16px;
+                            line-height: 1.3;
+                            font-weight: 700;
+                            color: #111827;
+                          "
+                        >
+                          Simple setup
+                        </p>
+                        <p class="body-text" style="margin: 0">
+                          Easy install options and friendly support—so you can be online quickly.
+                        </p>
+                      </div>
+                    </td>
+
+                    <!-- Column 3 -->
+                    <td
+                      class="stack stack-pad"
+                      width="33.33%"
+                      valign="top"
+                      style="padding: 0 0 0 8px"
+                    >
+                      <div
+                        style="
+                          border: 1px solid #e5e7eb;
+                          border-radius: 12px;
+                          padding: 14px;
+                          background: #ffffff;
+                        "
+                      >
+                        <p
+                          style="
+                            margin: 0 0 6px;
+                            font-family: Arial, Helvetica, sans-serif;
+                            font-size: 16px;
+                            line-height: 1.3;
+                            font-weight: 700;
+                            color: #111827;
+                          "
+                        >
+                          Better value
+                        </p>
+                        <p class="body-text" style="margin: 0">
+                          Bundle savings available. Learn more in our
+                          <a class="link" href="https://example.com/plans" target="_blank"
+                            >plan guide</a
+                          >.
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ===== CHECKED/RADIO INTERACTIVITY SECTION ===== -->
+            <tr>
+              <td class="px" style="padding: 0 22px 18px">
+                <div
+                  class="tabs"
+                  style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 14px;
+                    padding: 14px;
+                    background: #ffffff;
+                  "
+                >
+                  <p
+                    style="
+                      margin: 0 0 10px;
+                      font-size: 16px;
+                      line-height: 1.3;
+                      font-weight: 700;
+                      color: #111827;
+                    "
+                  >
+                    Explore options (tap a button)
+                  </p>
+
+                  <!-- radio inputs -->
+                  <input class="tab-input" type="radio" name="tabs" id="tab1" checked />
+                  <input class="tab-input" type="radio" name="tabs" id="tab2" />
+                  <input class="tab-input" type="radio" name="tabs" id="tab3" />
+
+                  <!-- labels -->
+                  <div class="labels">
+                    <label class="tab-label lab1" for="tab1">Streaming</label>
+                    <label class="tab-label lab2" for="tab2">Gaming</label>
+                    <label class="tab-label lab3" for="tab3">Work/Study</label>
+                  </div>
+
+                  <!-- panels -->
+                  <div class="panels">
+                    <div class="tab-panel panel1">
+                      <div class="body-text" style="margin: 0">
+                        Smooth 4K streaming + fewer drops during peak hours. Perfect for movie
+                        nights and smart TVs.
+                      </div>
+                    </div>
+
+                    <div class="tab-panel panel2">
+                      <div class="body-text" style="margin: 0">
+                        Lower lag for competitive play and stable connections for party chat and
+                        updates.
+                      </div>
+                    </div>
+
+                    <div class="tab-panel panel3">
+                      <div class="body-text" style="margin: 0">
+                        Reliable video meetings and faster uploads for assignments and projects—no
+                        more “Can you hear me?”
+                      </div>
+                    </div>
+                  </div>
+
+                  <p
+                    style="
+                      margin: 10px 0 0;
+                      font-size: 12px;
+                      line-height: 1.5;
+                      color: #6b7280;
+                    "
+                  >
+                    Note: Interactivity varies by email client.
+                  </p>
+                </div>
+              </td>
+            </tr>
+
+            <!-- BUTTON ROW (CENTERED + EXTRA SPACING) -->
+            <tr>
+              <td align="center" style="padding: 8px 22px 26px">
+                <!-- Bulletproof button -->
+                <table role="presentation" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td align="center" bgcolor="#008000" style="border-radius: 8px">
+                      <a
+                        href="https://example.com"
+                        target="_blank"
+                        class="btn btn-text"
+                        style="
+                          font-family: Arial, Helvetica, sans-serif;
+                          font-size: 18px;
+                          line-height: 18px;
+                          font-weight: 700;
+                          color: #ffffff;
+                          text-decoration: none;
+                          display: inline-block;
+                          padding: 18px 28px;
+                          border-radius: 8px;
+                        "
+                        aria-label="Check availability for Ucom internet plans"
+                      >
+                        Check Availability <span class="cta-arrow">➜</span>
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+
+                <p
+                  style="
+                    margin: 12px 0 0;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 13px;
+                    line-height: 1.5;
+                    color: #374151;
+                  "
+                >
+                  Tip: You can also
+                  <a class="link" href="https://example.com/chat" target="_blank">chat with us</a>
+                  for help choosing the right plan.
+                </p>
+              </td>
+            </tr>
+
+            <!-- FOOTER -->
+            <tr>
+              <td align="center" style="padding: 14px 18px 18px">
+                <p
+                  style="
+                    margin: 0 0 8px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 12px;
+                    line-height: 1.6;
+                    color: #6b7280;
+                  "
+                >
+                  If you'd like to stop receiving these emails, you can
+                  <a href="#" class="link">unsubscribe</a>.
+                </p>
+                <p
+                  style="
+                    margin: 0;
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 12px;
+                    line-height: 1.6;
+                    color: #6b7280;
+                  "
+                >
+                  Ucom • Customer Care • Los Angeles, CA
+                </p>
+              </td>
+            </tr>
+          </table>
+          <!-- /INNER -->
+        </td>
+      </tr>
+    </table>
+    <!-- /OUTER -->
+  </body>
+</html>
